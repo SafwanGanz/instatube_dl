@@ -24,10 +24,10 @@
 
 ### Files save to (YouTube):
    - `/sdcard/InstaTubeDL/Video`
+   - `/sdcard/InstaTubeDL/Audio`
      
 ### Files save to (Spotify):
-   - `/sdcard/Spotify/Video`
+   - `/sdcard/InstaTubeDl/Spotify`
 
 ### Files save to (InstaGram):
    - `/sdcard/InstaTubeDL/Instagram`
-   - `/sdcard/InstaTubeDL/Audio`
