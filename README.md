@@ -4,8 +4,8 @@
 
 1. Clone the repo:
    ```
-   git clone https://github.com/SafwanGanz/youtube-dl-cli.git
-   cd youtube-dl-cli
+   git clone https://github.com/SafwanGanz/instatube_dl.git
+   cd instatube_dl
    ```
 2. In Termux:
    ```
@@ -21,6 +21,13 @@
    ```
 2. Enter YouTube URL.
 3. Enter `video` or `audio`.
-4. Files save to:
-   - `/sdcard/Youtube-Dl/Video`
-   - `/sdcard/Youtube-Dl/Audio`
+
+### Files save to (YouTube):
+   - `/sdcard/InstaTubeDL/Video`
+     
+### Files save to (Spotify):
+   - `/sdcard/Spotify/Video`
+
+### Files save to (InstaGram):
+   - `/sdcard/InstaTubeDL/Instagram`
+   - `/sdcard/InstaTubeDL/Audio`
