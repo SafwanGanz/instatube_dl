@@ -46,7 +46,7 @@ export async function downloadContent(url, type) {
         console.log(info(`💾 Saving to: ${finalPath}`));
         console.log(info('🚀 Starting download...'));
 
-        const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path
+        const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe';
         const command = type === 'video'
             ? `yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]" -o "${outputPath}" "${url}" --ffmpeg-location "${ffmpegPath}"`
             : `yt-dlp -x --audio-format mp3 -o "${outputPath}" "${url}" --ffmpeg-location "${ffmpegPath}"`;
@@ -120,13 +120,11 @@ export async function downloadSpotify(link) {
 
     try {
         console.log(info('\n📋 Fetching Spotify content...'));
-        const outputPath = path.join(outputDir, '%(title)s.%(ext)s');
-        
         console.log(info(`💾 Saving Spotify content to: ${outputDir}`));
         console.log(info('🚀 Starting download...'));
 
-        const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path
-        const command = `spotdl download "${link}" --output "${outputPath}" --ffmpeg "${ffmpegPath}"`;
+        const ffmpegPath = platform === 'win32' ? 'C:\\ffmpeg\\bin\\ffmpeg.exe' : 'ffmpeg';
+        const command = `spotdl download "${link}" --output "${outputDir}" --ffmpeg "${ffmpegPath}"`;
         await execPromise(command, { encoding: 'utf8' });
 
         console.log(success('✅ Spotify download completed!'));
@@ -136,3 +134,4 @@ export async function downloadSpotify(link) {
         return false;
     }
 }
+    
