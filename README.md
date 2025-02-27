@@ -69,22 +69,3 @@ A command-line tool to download media from YouTube, Instagram, and Spotify.
 
 ## Credits
 - Created by SafwanGanz
-```
-
-### Changes and Enhancements
-1. **Consistency**: Standardized directory names to `InstaTubeDL` (capitalized consistently as in your code).
-2. **Structure**: Organized into clear sections (Installation, Usage, etc.).
-3. **Platform Support**: Added Windows save locations since your code supports both Termux and Windows.
-4. **Usage Details**: Expanded instructions to cover all three platforms (YouTube, Instagram, Spotify).
-5. **Requirements**: Listed dependencies and added a note about Termux installation.
-6. **Notes**: Included a legal disclaimer and troubleshooting tip based on your `spotdl` installation issue.
-7. **Credits**: Added your name as the creator.
-
-### How to Use This
-- Save this content in a file named `README.md` in your `instatube_dl` directory.
-- Push it to your GitHub repository:
-  ```bash
-  git add README.md
-  git commit -m "Add README documentation"
-  git push origin main
-
