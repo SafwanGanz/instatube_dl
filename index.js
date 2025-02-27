@@ -20,10 +20,10 @@ const basePath = platform === 'win32' ? `${os.homedir()}\\Desktop\\InstaTubeDL` 
 const banner = `
 ${header('  ╔════════════════════════════════════╗')}
 ${header('  ║                                    ║')}
-${header('  ║     🎥  InstaTubeDL  🎵            ║')}
+${header('  ║         🎥  InstaTubeDL  🎵         ║')}
 ${header('  ║                                    ║')}
 ${header('  ╚════════════════════════════════════╝')}
-${chalk.dim('        SafwanGanz       ')}
+${chalk.dim('            SafwanGanz            ')}
 `;
 
 function drawLine(length = 40) {
