@@ -1,6 +1,6 @@
 import readline from 'readline';
 import chalk from 'chalk';
-import { sanitizeFilename, getVideoTitle, downloadContent, downloadInstagram } from './src/downloader.js';
+import { sanitizeFilename, getVideoTitle, downloadContent, downloadInstagram, downloadSpotify } from './src/downloader.js';
 import os from 'os';
 
 const rl = readline.createInterface({
@@ -43,10 +43,11 @@ async function startCLI() {
         console.log(info('\nSelect a platform to download from:'));
         console.log(header('1. YouTube'));
         console.log(header('2. Instagram'));
+        console.log(header('3. Spotify'));
         console.log(info('Or type "exit" to quit'));
         console.log(drawLine());
 
-        const choice = await askQuestion('Enter your choice (1-2):');
+        const choice = await askQuestion('Enter your choice (1-3):');
         
         if (choice.toLowerCase() === 'exit') {
             console.log(info('\n👋 Goodbye!'));
@@ -98,8 +99,26 @@ async function startCLI() {
                 console.log(info('\n⏳ Something went wrong, but you can try again!'));
             }
         } 
+        else if (choice === '3') {
+            const url = await askQuestion('🌐 Enter Spotify URL (track/playlist/album):');
+            if (!url || !url.includes('spotify.com')) {
+                console.log(error('\n❌ Invalid URL! Must be a valid Spotify link.'));
+                console.log(drawLine());
+                continue;
+            }
+
+            console.log(drawLine());
+            const result = await downloadSpotify(url);
+            console.log(drawLine());
+
+            if (result) {
+                console.log(info('\n🎉 Ready for your next download!'));
+            } else {
+                console.log(info('\n⏳ Something went wrong, but you can try again!'));
+            }
+        }
         else {
-            console.log(error('\n❌ Invalid choice! Please select 1 or 2.'));
+            console.log(error('\n❌ Invalid choice! Please select 1, 2, or 3.'));
             console.log(drawLine());
             continue;
         }
