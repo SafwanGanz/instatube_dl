@@ -46,9 +46,10 @@ export async function downloadContent(url, type) {
         console.log(info(`💾 Saving to: ${finalPath}`));
         console.log(info('🚀 Starting download...'));
 
+        const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path
         const command = type === 'video'
-            ? `yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]" -o "${outputPath}" "${url}"`
-            : `yt-dlp -x --audio-format mp3 -o "${outputPath}" "${url}"`;
+            ? `yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]" -o "${outputPath}" "${url}" --ffmpeg-location "${ffmpegPath}"`
+            : `yt-dlp -x --audio-format mp3 -o "${outputPath}" "${url}" --ffmpeg-location "${ffmpegPath}"`;
 
         await execPromise(command, { encoding: 'utf8' });
 
@@ -106,6 +107,32 @@ export async function downloadInstagram(link) {
         return true;
     } catch (err) {
         console.log(error(`❌ Instagram download failed: ${err.message}`));
+        return false;
+    }
+}
+
+export async function downloadSpotify(link) {
+    const outputDir = path.join(basePath, 'Spotify');
+
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+    }
+
+    try {
+        console.log(info('\n📋 Fetching Spotify content...'));
+        const outputPath = path.join(outputDir, '%(title)s.%(ext)s');
+        
+        console.log(info(`💾 Saving Spotify content to: ${outputDir}`));
+        console.log(info('🚀 Starting download...'));
+
+        const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path
+        const command = `spotdl download "${link}" --output "${outputPath}" --ffmpeg "${ffmpegPath}"`;
+        await execPromise(command, { encoding: 'utf8' });
+
+        console.log(success('✅ Spotify download completed!'));
+        return true;
+    } catch (err) {
+        console.log(error(`❌ Spotify download failed: ${err.message}`));
         return false;
     }
 }
